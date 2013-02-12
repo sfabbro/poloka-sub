@@ -1,0 +1,10 @@
+prefix=@prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: poloka-sub
+Description: 
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir}
+Reqyures: poloka-core
+Cflags: -I${includedir}
