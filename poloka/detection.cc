@@ -978,19 +978,29 @@ bool ImageDetect(ReducedImage& Im,
 	   << " without both image and weight\n";
       return false;
     }
+  return ImageDetect(Im.FitsName(), Im.FitsWeightName(), Im.Seeing(),
+		     Detections, Ref, Positions, FixedPos);
+}
 
+bool ImageDetect(const string& FitsIm,
+		 const string& FitsWeight,
+		 const double& SigmaGauss,
+		 DetectionList &Detections,
+		 const ReducedImage* Ref,
+		 const BaseStarList* Positions,
+		 bool FixedPos)
+{
   // filter size is equal to seeing until we refine it
+  
   if (Positions)
     {
-	DetectionProcess detectionProcess(Im.FitsName(), Im.FitsWeightName(), 
-					  Im.Seeing(), Im.Seeing());
-	detectionProcess.DetectionScoresFromPositions(*Positions, Detections, FixedPos);
+      DetectionProcess detectionProcess(FitsIm, FitsWeight, SigmaGauss, SigmaGauss);
+      detectionProcess.DetectionScoresFromPositions(*Positions, Detections, FixedPos);
     }
   else
     { 
-	DetectionProcess detectionProcess(Im.FitsName(), Im.FitsWeightName(), 
-					  Im.Seeing(), Im.Seeing());
-	detectionProcess.DoDetection(Detections);	
+      DetectionProcess detectionProcess(FitsIm, FitsWeight, SigmaGauss, SigmaGauss);
+      detectionProcess.DoDetection(Detections);	
     }
   
   // Fill in the Detection's block that concerns a reference
@@ -999,8 +1009,7 @@ bool ImageDetect(ReducedImage& Im,
   //  - nearest object
   if (Ref) 
     {
-      DetectionProcess refDet(Ref->FitsName(), Ref->FitsWeightName(), 
-			      Im.Seeing(), Im.Seeing());
+      DetectionProcess refDet(Ref->FitsName(), Ref->FitsWeightName(), SigmaGauss, SigmaGauss);
       refDet.SetScoresFromRef(Detections, *Ref);
     }
 

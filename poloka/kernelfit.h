@@ -221,8 +221,8 @@ public :
   void KernAllocateAndCompute(Kernel &Result, const double X, const double Y) const; 
 
 
-  void ImageConvolve(const Image &In, Image &Out,int UpdateKernStep = 100);
-  void VarianceConvolve(const Image &Source, Image &Out, int UpdateKern = 100);
+  void ImageConvolve(const Image &In, Image &Out,int UpdateKernStep = 100) const;
+  void VarianceConvolve(const Image &Source, Image &Out, int UpdateKern = 100) const;
 
   void AddBackground(Image& Im) const;
 

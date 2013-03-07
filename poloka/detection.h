@@ -176,6 +176,14 @@ class DetectionProcess {
     double LocalImageBackground(const int i, const int j) const;
 };
 
+bool ImageDetect(const string& FitsIm,
+		 const string& FitsWeight,
+		 const double& SigmaGauss,
+		 DetectionList &Detections,
+		 const ReducedImage* Ref,
+		 const BaseStarList* Positions=0,
+		 bool FixedPos=false);
+
 bool ImageDetect(ReducedImage& Im, 
 		 DetectionList &Detections,
 		 const ReducedImage* Ref=0,

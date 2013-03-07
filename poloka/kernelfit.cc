@@ -727,7 +727,7 @@ void KernelFit::SubtractMeshDiffBackground(ImagePair &ImPair, Image& Im)
 //! convolves the best image with the current kernel (Usually set by DoTheFit).
 /*! The UpdateKern parameter is the pixel range over which the kernel will not
 be updated.*/
-void KernelFit::ImageConvolve(const Image &Source, Image &Out, int UpdateKernStep)
+void KernelFit::ImageConvolve(const Image &Source, Image &Out, int UpdateKernStep) const
 {
   if (!fitDone)
     throw(PolokaException("KernelFit::ImageConvolve fit not done yet ")); 
@@ -863,7 +863,7 @@ void KernelFit::AddBackground(Image& Im) const
        Im(i,j) += BackValue(i,j);
 }
 
-void KernelFit::VarianceConvolve(const Image &Source, Image&Out, int UpdateKernStep)
+void KernelFit::VarianceConvolve(const Image &Source, Image&Out, int UpdateKernStep) const
 {
   if (!fitDone)
     throw(PolokaException("KernelFit::VarianceConvolve fit not done yet "));

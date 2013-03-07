@@ -25,9 +25,9 @@ libtool
 /configure
 /autoconf
 /doc/Doxyfile
+*pc
 
 # execs
 /tools/*
 !/tools/*.cc
 !Makefile.am
-*pc

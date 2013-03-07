@@ -1,5 +1,4 @@
 ## Initialization 
-AC_PREREQ(2.59)
 AC_INIT([poloka-sub], 0.1.0, [poloka team])
 AC_CONFIG_SRCDIR([poloka/kernelfit.cc])
 AC_CONFIG_HEADERS([config.h])

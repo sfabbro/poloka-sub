@@ -16,7 +16,8 @@ src_include_HEADERS = \
 	kernelfitter.h \
 	quali_box.h \
 	scorescollection.h \
-	sub.h
+	sub.h \
+	subtraction.h
 
 libpoloka_sub_la_SOURCES = \
 	$(src_include_HEADERS) \
@@ -28,7 +29,8 @@ libpoloka_sub_la_SOURCES = \
 	kernelfitter.cc \
 	quali_box.cc \
 	scorescollection.cc \
-	sub.cc
+	sub.cc \
+	subtraction.cc
 
 libpoloka_sub_la_CPPFLAGS = @POLOKA_CORE_CFLAGS@
 

@@ -6,7 +6,7 @@
 KernelFitter::KernelFitter(const ReducedImageRef &Ref, const ReducedImageRef &New, const bool NoSwap) 
 {
   if (!(Ref->SamePhysicalSize(*New)))
-    throw PolokaException(" Cannot fit kernel on images of different sizes ");
+    throw PolokaException("Cannot fit kernel from images of different size");
 
   double refSeeing = Ref->Seeing();
   double newSeeing = New->Seeing();  
@@ -45,7 +45,7 @@ void KernelFitter::WriteKernel(bool overwrite) const
     if (overwrite) remove(kernfile.c_str());
     else return;
   }
-  cout << " Writing " << kernfile << endl;
+  cout << " KernelFitter: writing " << kernfile << endl;
   write(kernfile);
 }
 
@@ -53,7 +53,7 @@ bool KernelFitter::ReadKernel()
 {
   string kernfile = kernfitfile(best,worst);
   if (!FileExists(kernfile)) return false;
-  cout << " Reading " << kernfile << endl;
+  cout << " KernelFitter: reading " << kernfile << endl;
   read(kernfile);
   return true;
 }
@@ -61,5 +61,5 @@ bool KernelFitter::ReadKernel()
 KernelFitter::KernelFitter(const string& FileName)
 {
   if (!ReadKernel())
-    throw(PolokaException("KernelFitter: could not read " + FileName));
+    throw(PolokaException("Could not read " + FileName));
 }

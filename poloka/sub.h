@@ -2,19 +2,15 @@
 #ifndef SUB__H
 #define SUB__H
 
-#include <poloka/reducedimage.h>
 
 #include <list>
 #include <vector>
 
-
-
+#include <poloka/reducedimage.h>
+#include <poloka/imagesubtraction.h>
 
 class ImageSum;
 class ReducedImage;
-
-#include "imagesubtraction.h"
-
 
 enum StackType { RegularKind = 0, SwarpKind = 1};
 
