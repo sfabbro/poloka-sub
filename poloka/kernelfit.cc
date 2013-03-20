@@ -31,27 +31,6 @@ static const Pixel BAD_WEIGHT = 1e-10;
 
 static double sqr(double x) { return x*x;}
 
-// compute median and M.A.D. = median(|x - median(x)|)
-// robust estimator of standard deviation
-static double median_mad(vector<double>& x, double& disp) {
-  size_t n = x.size();
-  sort(x.begin(), x.end());
-  double med = (n & 1) ? x[n/2] : (x[n/2-1] + x[n/2])*0.5;  
-  for (vector<double>::iterator it = x.begin(); it != x.end(); ++it) {
-    *it = fabs(*it - med);
-  }
-  sort(x.begin(), x.end());
-  double mad = (n & 1) ? x[n/2] : (x[n/2-1] + x[n/2])*0.5;  
-  disp = 1.4826 * mad;
-  return med;
-}
-
-static double median(vector<double>& x) {
-  size_t n = x.size();
-  sort(x.begin(), x.end());
-  return (n & 1) ? x[n/2] : (x[n/2-1] + x[n/2])*0.5;  
-}
-
 string KernelFitFile(const ImagePair& ImPair) {
   return ImPair.Worst()->Dir() + "kernel_from_" + ImPair.Best()->Name();
 }
