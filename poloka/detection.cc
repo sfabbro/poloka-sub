@@ -1048,11 +1048,12 @@ MatchedDetection* MatchedDetection::read(fastifstream& r, const char* Format)
   MatchedDetection *result = new MatchedDetection(*d);
   delete d;
   unsigned count;
-  r >> count;
-  for (unsigned k=0; k<count ; ++k)
-    {
+  if (r >> count) {
+    for (unsigned k=0; k<count ; ++k)
       result->others.push_back(Detection::read(r, subFormat));
-    }
+  } else {
+    cerr << " MatchedDetection: bad detection list format\n";
+  }
   return result;
 }
 

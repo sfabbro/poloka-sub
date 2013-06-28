@@ -32,6 +32,6 @@ libpoloka_sub_la_SOURCES = \
 	sub.cc \
 	subtraction.cc
 
-libpoloka_sub_la_CPPFLAGS = @POLOKA_CORE_CFLAGS@
+libpoloka_sub_la_CPPFLAGS = -I$(top_srcdir) @POLOKA_CORE_CFLAGS@ 
 
 libpoloka_sub_la_LIBADD = @POLOKA_CORE_LIBS@

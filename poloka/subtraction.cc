@@ -267,7 +267,7 @@ bool Subtractor::operator () (ReducedImageRef Im) const {
   bool status = true;
   try {
     KernelFitter kernFit(Ref, Im, noSwap);
-    if (overWrite || !kernFit.ReadKernel())
+    if (overWrite || !kernFit.ReadKernel()) {
       if (kernFit.DoTheFit())
 	kernFit.WriteKernel(overWrite);
       else {
@@ -276,6 +276,7 @@ bool Subtractor::operator () (ReducedImageRef Im) const {
 	     << Im->Name() << " failed\n";
 	return false;
       }
+    }
     if (!doSub) return true;
     
     if (overWrite) {

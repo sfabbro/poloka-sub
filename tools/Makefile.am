@@ -3,7 +3,7 @@ MAINTAINERCLEANFILES = \
         Makefile.in \
         stamp-*
 
-AM_CPPFLAGS = @POLOKA_CORE_CFLAGS@
+AM_CPPFLAGS = -I$(top_srcdir) @POLOKA_CORE_CFLAGS@
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

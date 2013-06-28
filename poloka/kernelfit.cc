@@ -2012,11 +2012,13 @@ int KernelFit::DoTheFit(ImagePair &ImPair)
   if (worstSeeing > bestSeeing) {
     PolGaussKern(guess, sqrt(sqr(worstSeeing) - sqr(bestSeeing)), 0, 0);
     guess *= 1./guess.sum();
-    if (optParams.KernelBasis == 3)
-      if (worstSeeing > 1.1*bestSeeing)
+    if (optParams.KernelBasis == 3) {
+      if (worstSeeing > 1.1*bestSeeing) {
 	optParams.KernelBasis = 1;
-      else
+      } else {
 	optParams.KernelBasis = 2;
+      }
+    }
   } else { // use delta
     SetDelta(guess);
     if (optParams.KernelBasis == 3) optParams.KernelBasis = 2;
@@ -2068,7 +2070,7 @@ int KernelFit::DoTheFit(ImagePair &ImPair)
   // handle worst: it is the actual worst if diff. background is not fitted separately,
   // we have to subtract diff. background if it was fitted:
 
-  if (optParams.MeshStep > 0)
+  if (optParams.MeshStep > 0) {
     if (fitDone)
       {
 	Image *tmp = new Image(ImPair.WorstImage());
@@ -2078,8 +2080,9 @@ int KernelFit::DoTheFit(ImagePair &ImPair)
       }
     else if (optParams.SepBackVar.Degree < 0)
       optParams.SepBackVar.SetDegree(1);
+  }
 
-  if (optParams.SepBackVar.Degree > -1)
+  if (optParams.SepBackVar.Degree > -1) {
     if (fitDone && optParams.MeshStep > 0)
       optParams.SepBackVar.SetDegree(-1);
     else
@@ -2091,7 +2094,7 @@ int KernelFit::DoTheFit(ImagePair &ImPair)
 	worstImage = tmp;
 	del_worst.reset(tmp);
       }  
-
+  }
   if (optParams.MeshStep <=0 && optParams.SepBackVar.Nterms() <= 0)
     {
       worstImage = &ImPair.WorstImage();
