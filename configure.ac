@@ -5,12 +5,9 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR(autoconf)
 AM_INIT_AUTOMAKE([foreign])
 
-## Keep this one before libtool check
-AM_DISABLE_STATIC
-
 ## Checks for programs to build poloka-core library
 AC_PROG_CXX
-AC_PROG_LIBTOOL
+LT_INIT([disable-static])
 
 ## Check for mandatory poloka-core
 PKG_CHECK_MODULES([POLOKA_CORE],
